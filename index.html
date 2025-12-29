@@ -7,6 +7,19 @@
     
     <!-- Tailwind Configuration -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        // Fix for Dark Mode: Configure Tailwind to look for 'class' strategy
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
 
     <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -71,10 +84,9 @@
                     <span class="text-black dark:text-white font-semibold tracking-tight text-lg">Stylo.ai</span>
                 </div>
 
-                <!-- Desktop Menu (Modified: Removed Gallery, Added Contact) -->
+                <!-- Desktop Menu -->
                 <div class="hidden md:flex items-center gap-8 text-sm font-medium">
                     <button onclick="navigateTo('home')" class="text-zinc-600 dark:text-zinc-400 hover:text-black dark:hover:text-white transition-colors">Home</button>
-                    <!-- Gallery link removed from here -->
                     <button onclick="navigateTo('how-it-works')" class="text-zinc-600 dark:text-zinc-400 hover:text-black dark:hover:text-white transition-colors">How it works</button>
                     <button onclick="navigateTo('pricing')" class="text-zinc-600 dark:text-zinc-400 hover:text-black dark:hover:text-white transition-colors">Pricing</button>
                     <button onclick="navigateTo('contact')" class="text-zinc-600 dark:text-zinc-400 hover:text-black dark:hover:text-white transition-colors">Contact</button>
@@ -135,7 +147,6 @@
         <div id="mobile-menu" class="hidden md:hidden border-t border-black/5 dark:border-white/5 bg-white/95 dark:bg-[#050505]/95 backdrop-blur-xl">
             <div class="px-4 pt-2 pb-6 space-y-1">
                 <button onclick="navigateTo('home'); toggleMobileMenu()" class="block w-full text-left px-3 py-3 text-base font-medium text-zinc-600 dark:text-zinc-400 hover:text-black dark:hover:text-white hover:bg-zinc-50 dark:hover:bg-white/5 rounded-lg transition-colors">Home</button>
-                <!-- Gallery removed from mobile menu as well -->
                 <button onclick="navigateTo('how-it-works'); toggleMobileMenu()" class="block w-full text-left px-3 py-3 text-base font-medium text-zinc-600 dark:text-zinc-400 hover:text-black dark:hover:text-white hover:bg-zinc-50 dark:hover:bg-white/5 rounded-lg transition-colors">How it works</button>
                 <button onclick="navigateTo('pricing'); toggleMobileMenu()" class="block w-full text-left px-3 py-3 text-base font-medium text-zinc-600 dark:text-zinc-400 hover:text-black dark:hover:text-white hover:bg-zinc-50 dark:hover:bg-white/5 rounded-lg transition-colors">Pricing</button>
                 <button onclick="navigateTo('contact'); toggleMobileMenu()" class="block w-full text-left px-3 py-3 text-base font-medium text-zinc-600 dark:text-zinc-400 hover:text-black dark:hover:text-white hover:bg-zinc-50 dark:hover:bg-white/5 rounded-lg transition-colors">Contact</button>
@@ -1071,7 +1082,9 @@
             if (currentUserEmail) {
                 // Logged In
                 loggedOut.classList.add('hidden');
-                loggedOut.classList.remove('flex'); 
+                // IMPORTANT FIX: Remove md:flex to ensure it hides on desktop
+                loggedOut.classList.remove('md:flex'); 
+                
                 loggedIn.classList.remove('hidden');
                 loggedIn.classList.add('flex');
                 
@@ -1087,7 +1100,9 @@
             } else {
                 // Logged Out
                 loggedOut.classList.remove('hidden');
-                loggedOut.classList.add('flex');
+                // IMPORTANT FIX: Add md:flex back so it shows on desktop
+                loggedOut.classList.add('md:flex');
+                
                 loggedIn.classList.add('hidden');
                 loggedIn.classList.remove('flex');
                 
