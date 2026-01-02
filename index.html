@@ -6,6 +6,7 @@
     <title>Stylo AI</title>
     
     <!-- Tailwind Configuration -->
+    <script src="https://widget.cloudinary.com/v2.0/global/all.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         // Fix for Dark Mode: Configure Tailwind to look for 'class' strategy
@@ -1320,6 +1321,84 @@
 
             }, 2000);
         }
+  let uploadedImageUrl = "";
+
+  // Hook existing file input
+  const fileInput = document.getElementById("file-upload");
+
+  fileInput.addEventListener("change", function () {
+    if (!fileInput.files || !fileInput.files[0]) return;
+
+    const file = fileInput.files[0];
+
+    cloudinary.openUploadWidget(
+      {
+        cloudName: "YOUR_CLOUD_NAME",   // 🔴 change this
+        uploadPreset: "unsigned_preset", // 🔴 change this
+        sources: ["local", "camera"],
+        multiple: false,
+        cropping: false,
+        clientAllowedFormats: ["png", "jpg", "jpeg"],
+        maxFileSize: 5000000
+      },
+      function (error, result) {
+        if (!error && result && result.event === "success") {
+          uploadedImageUrl = result.info.secure_url;
+
+          // Show preview
+          const preview = document.getElementById("user-preview");
+          preview.src = uploadedImageUrl;
+          preview.classList.remove("hidden");
+
+          // Update UI state
+          document.getElementById("upload-placeholder").classList.add("hidden");
+          document.getElementById("upload-success").classList.remove("hidden");
+          document.getElementById("filename").innerText = result.info.original_filename;
+        }
+      }
+    );
+  });
+
+  // Hook Generate button
+  async function generateOutfit() {
+    if (!uploadedImageUrl) {
+      alert("Please upload an image first");
+      return;
+    }
+
+    const occasion = document.getElementById("occasion-select").value;
+
+    document.getElementById("loader-overlay").classList.remove("hidden");
+
+    try {
+      const res = await fetch("https://stylopro-ai-backend.onrender.com/tryon", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          imageUrl: uploadedImageUrl,
+          occasion: occasion
+        })
+      });
+
+      const data = await res.json();
+
+      const resultImg = document.getElementById("result-image");
+      const container = document.getElementById("result-container");
+
+      resultImg.src = data.result[0];
+      container.classList.remove("hidden");
+
+      setTimeout(() => {
+        resultImg.style.opacity = "1";
+      }, 100);
+
+    } catch (e) {
+      alert("AI generation failed");
+    } finally {
+      document.getElementById("loader-overlay").classList.add("hidden");
+    }
+  }
     </script>
 </body>
 </html>
+
