@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Careers - Stylo AI</title>
+    
+    <!-- Tailwind Configuration -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        body { font-family: 'Inter', sans-serif; transition: background-color 0.3s ease; overflow-x: hidden; }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #52525b; border-radius: 3px; }
+        
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        
+        .dark .glass-panel {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .animate-fade-in { animation: fadeIn 0.5s ease-out forwards; opacity: 0; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    </style>
+</head>
+<body class="bg-zinc-50 text-zinc-600 dark:bg-[#050505] dark:text-zinc-400 antialiased selection:bg-emerald-500/20 selection:text-emerald-500 flex flex-col min-h-screen">
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 border-b border-black/5 dark:border-white/5 bg-white/80 dark:bg-[#050505]/80 backdrop-blur-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Logo -->
+                <a href="index.html" class="flex items-center gap-2 cursor-pointer group">
+                    <div class="w-8 h-8 bg-black dark:bg-white rounded-lg flex items-center justify-center transition-transform group-hover:scale-95">
+                        <iconify-icon icon="lucide:sparkles" class="text-white dark:text-black text-lg" stroke-width="1.5"></iconify-icon>
+                    </div>
+                    <span class="text-black dark:text-white font-semibold tracking-tight text-lg">Stylo.ai</span>
+                </a>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center gap-8 text-sm font-medium">
+                    <a href="index.html" class="text-zinc-600 dark:text-zinc-400 hover:text-black dark:hover:text-white transition-colors font-medium">Home</a>
+                    <a href="how-it-works.html" class="text-zinc-600 dark:text-zinc-400 hover:text-black dark:hover:text-white transition-colors font-medium">How it works</a>
+                    <a href="pricing.html" class="text-zinc-600 dark:text-zinc-400 hover:text-black dark:hover:text-white transition-colors font-medium">Pricing</a>
+                    <a href="gallery.html" class="text-zinc-600 dark:text-zinc-400 hover:text-black dark:hover:text-white transition-colors font-medium">Gallery</a>
+                    <a href="contact.html" class="text-zinc-600 dark:text-zinc-400 hover:text-black dark:hover:text-white transition-colors font-medium">Contact</a>
+                </div>
+
+                <!-- Right Side Actions -->
+                <div class="flex items-center gap-3">
+                    <div class="relative">
+                        <button onclick="toggleThemeMenu()" class="flex items-center justify-center w-8 h-8 rounded-full hover:bg-black/5 dark:hover:bg-white/10 text-zinc-600 dark:text-zinc-400 transition-colors">
+                            <iconify-icon id="theme-icon" icon="lucide:moon" stroke-width="1.5"></iconify-icon>
+                        </button>
+                        <!-- Theme Dropdown -->
+                        <div id="theme-menu" class="hidden absolute right-0 mt-2 w-32 bg-white dark:bg-zinc-900 rounded-lg shadow-xl border border-black/5 dark:border-white/10 overflow-hidden z-50">
+                            <button onclick="setTheme('light')" class="w-full text-left px-4 py-2 text-xs font-medium hover:bg-zinc-100 dark:hover:bg-zinc-800 flex items-center gap-2"><iconify-icon icon="lucide:sun" stroke-width="1.5"></iconify-icon> Light</button>
+                            <button onclick="setTheme('dark')" class="w-full text-left px-4 py-2 text-xs font-medium hover:bg-zinc-100 dark:hover:bg-zinc-800 flex items-center gap-2"><iconify-icon icon="lucide:moon" stroke-width="1.5"></iconify-icon> Dark</button>
+                            <button onclick="setTheme('system')" class="w-full text-left px-4 py-2 text-xs font-medium hover:bg-zinc-100 dark:hover:bg-zinc-800 flex items-center gap-2"><iconify-icon icon="lucide:monitor" stroke-width="1.5"></iconify-icon> System</button>
+                        </div>
+                    </div>
+
+                    <div class="h-4 w-[1px] bg-zinc-300 dark:bg-zinc-800 mx-1"></div>
+
+                    <div id="auth-logged-out" class="hidden md:flex items-center gap-3">
+                        <button onclick="openAuthModal('login')" class="text-sm font-medium text-zinc-600 dark:text-zinc-300 hover:text-black dark:hover:text-white transition-colors">Log in</button>
+                        <button onclick="openAuthModal('signup')" class="bg-black dark:bg-white text-white dark:text-black text-sm font-medium px-4 py-2 rounded-full hover:opacity-90 transition-all shadow-sm">Sign up</button>
+                    </div>
+
+                    <div id="auth-logged-in" class="hidden items-center gap-3">
+                        <div class="flex flex-col items-end mr-1">
+                            <span id="user-display-name" class="text-xs font-semibold text-black dark:text-white leading-tight">User</span>
+                            <span id="user-display-email" class="text-[10px] text-zinc-500">user@example.com</span>
+                        </div>
+                        <button onclick="logout()" class="w-8 h-8 rounded-full bg-emerald-500 text-white flex items-center justify-center font-bold text-xs hover:bg-emerald-600 transition-colors" title="Logout">
+                            <iconify-icon icon="lucide:log-out" stroke-width="1.5"></iconify-icon>
+                        </button>
+                    </div>
+
+                    <button class="md:hidden ml-2" onclick="toggleMobileMenu()"><iconify-icon icon="lucide:menu" class="text-2xl"></iconify-icon></button>
+                </div>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden border-t border-black/5 dark:border-white/5 bg-white/95 dark:bg-[#050505]/95 backdrop-blur-xl px-4 pt-2 pb-6 space-y-1">
+            <a href="index.html" class="block w-full text-left px-3 py-3 text-base font-medium">Home</a>
+            <a href="how-it-works.html" class="block w-full text-left px-3 py-3 text-base font-medium">How it works</a>
+            <a href="pricing.html" class="block w-full text-left px-3 py-3 text-base font-medium">Pricing</a>
+            <a href="gallery.html" class="block w-full text-left px-3 py-3 text-base font-medium">Gallery</a>
+            <a href="contact.html" class="block w-full text-left px-3 py-3 text-base font-medium">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="pt-16 flex-grow w-full relative">
+        <!-- CAREERS PAGE -->
+        <div class="animate-fade-in max-w-4xl mx-auto pt-8 px-4">
+            <div class="text-center py-20">
+                <h2 class="text-4xl font-extrabold text-black dark:text-white mb-4 tracking-tighter">Careers</h2>
+                <p class="text-7xl sm:text-9xl text-zinc-500 mt-10 font-medium">Coming Soon</p>
+                <p class="text-sm text-zinc-400 mt-10 max-w-md mx-auto">We're building the future of AI fashion. Stay tuned for opportunities to join our team.</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-black/5 dark:border-white/5 bg-white dark:bg-[#020202] py-12 mt-auto relative z-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div class="space-y-4">
+                <div class="flex items-center gap-2">
+                    <iconify-icon icon="lucide:sparkles" class="text-black dark:text-white" stroke-width="1.5"></iconify-icon>
+                    <span class="text-black dark:text-white font-medium tracking-tight">Stylo.ai</span>
+                </div>
+                <p class="text-xs text-zinc-500">© 2023 Stylo AI Inc.<br>All rights reserved.</p>
+                <div class="flex gap-4">
+                    <a href="#" class="text-zinc-400 hover:text-black dark:hover:text-white"><iconify-icon icon="lucide:twitter"></iconify-icon></a>
+                    <a href="#" class="text-zinc-400 hover:text-black dark:hover:text-white"><iconify-icon icon="lucide:instagram"></iconify-icon></a>
+                    <a href="#" class="text-zinc-400 hover:text-black dark:hover:text-white"><iconify-icon icon="lucide:github"></iconify-icon></a>
+                </div>
+            </div>
+            <div>
+                <h4 class="text-black dark:text-white text-sm font-medium mb-4">Product</h4>
+                <ul class="space-y-2 text-xs text-zinc-500">
+                    <li><a href="how-it-works.html" class="hover:text-zinc-800 dark:hover:text-zinc-300">Features</a></li>
+                    <li><a href="pricing.html" class="hover:text-zinc-800 dark:hover:text-zinc-300">Pricing</a></li>
+                    <li><a href="gallery.html" class="hover:text-zinc-800 dark:hover:text-zinc-300">Gallery</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-black dark:text-white text-sm font-medium mb-4">Company</h4>
+                <ul class="space-y-2 text-xs text-zinc-500">
+                    <li><a href="about.html" class="hover:text-zinc-800 dark:hover:text-zinc-300">About</a></li>
+                    <li><a href="careers.html" class="hover:text-zinc-800 dark:hover:text-zinc-300">Careers</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-black dark:text-white text-sm font-medium mb-4">Legal</h4>
+                <ul class="space-y-2 text-xs text-zinc-500">
+                    <li><a href="privacy.html" class="hover:text-zinc-800 dark:hover:text-zinc-300">Privacy</a></li>
+                    <li><a href="terms.html" class="hover:text-zinc-800 dark:hover:text-zinc-300">Terms</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Auth Modal -->
+    <div id="auth-modal" class="fixed inset-0 z-[100] hidden">
+        <!-- Backdrop -->
+        <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" onclick="closeAuthModal()"></div>
+        
+        <!-- Modal Content -->
+        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full max-w-md p-4">
+            <div class="bg-white dark:bg-[#09090b] rounded-2xl border border-black/5 dark:border-white/10 shadow-2xl overflow-hidden p-8 relative">
+                <button onclick="closeAuthModal()" class="absolute top-4 right-4 text-zinc-400 hover:text-black dark:hover:text-white">
+                    <iconify-icon icon="lucide:x" stroke-width="1.5"></iconify-icon>
+                </button>
+
+                <div class="text-center mb-6">
+                    <div class="inline-block p-3 rounded-xl bg-zinc-100 dark:bg-white/5 mb-4">
+                        <iconify-icon icon="lucide:user-check" class="text-2xl text-black dark:text-white" stroke-width="1.5"></iconify-icon>
+                    </div>
+                    <h3 id="auth-title" class="text-xl font-semibold text-black dark:text-white">Welcome back</h3>
+                    <p id="auth-desc" class="text-sm text-zinc-500 mt-1">Enter your details to access your wardrobe.</p>
+                </div>
+
+                <form id="auth-form" onsubmit="handleAuth(event)" class="space-y-4">
+                    <div id="auth-name-field" class="space-y-1 hidden">
+                        <label class="text-xs font-medium text-zinc-500">Full Name</label>
+                        <input type="text" id="auth-name" class="w-full bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-white/10 rounded-lg px-3 py-2.5 text-sm focus:ring-1 focus:ring-black dark:focus:ring-white outline-none transition-colors text-black dark:text-white" placeholder="John Doe">
+                    </div>
+
+                    <div class="space-y-1">
+                        <label class="text-xs font-medium text-zinc-500">Email Address</label>
+                        <input type="email" id="auth-email" required class="w-full bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-white/10 rounded-lg px-3 py-2.5 text-sm focus:ring-1 focus:ring-black dark:focus:ring-white outline-none transition-colors text-black dark:text-white" placeholder="you@gmail.com">
+                    </div>
+                    <div class="space-y-1">
+                        <label class="text-xs font-medium text-zinc-500">Password</label>
+                        <input type="password" id="auth-pass" required class="w-full bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-white/10 rounded-lg px-3 py-2.5 text-sm focus:ring-1 focus:ring-black dark:focus:ring-white outline-none transition-colors text-black dark:text-white" placeholder="Min 8 chars, 1 uppercase">
+                    </div>
+                    
+                    <div id="auth-error" class="text-red-500 text-xs text-center hidden"></div>
+                    <div id="auth-success" class="text-emerald-500 text-xs text-center hidden"></div>
+
+                    <button type="submit" id="auth-submit-btn" class="w-full bg-black dark:bg-white text-white dark:text-black font-medium py-2.5 rounded-lg hover:opacity-90 transition-opacity mt-2">Log In</button>
+                </form>
+
+                <div class="mt-6 text-center">
+                    <p class="text-xs text-zinc-500">
+                        <span id="auth-footer-text">Don't have an account?</span>
+                        <button id="auth-switch-btn" onclick="toggleAuthMode()" class="text-black dark:text-white font-medium hover:underline ml-1">Sign up</button>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Welcome Toast -->
+    <div id="welcome-toast" class="fixed bottom-10 left-1/2 -translate-x-1/2 z-[200] px-6 py-3 rounded-full glass-panel border border-emerald-500/20 shadow-2xl flex items-center gap-3 transform translate-y-20 opacity-0 transition-all duration-500 pointer-events-none">
+        <div class="w-8 h-8 bg-emerald-500 rounded-full flex items-center justify-center">
+            <iconify-icon icon="lucide:check" class="text-white text-lg"></iconify-icon>
+        </div>
+        <span id="welcome-msg" class="text-sm font-semibold text-black dark:text-white">Welcome back!</span>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        // === THEME LOGIC ===
+        function toggleThemeMenu() {
+            document.getElementById('theme-menu').classList.toggle('hidden');
+        }
+
+        function setTheme(theme) {
+            const html = document.documentElement;
+            const icon = document.getElementById('theme-icon');
+            
+            if (theme === 'system') {
+                if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                    html.classList.add('dark');
+                } else {
+                    html.classList.remove('dark');
+                }
+                localStorage.removeItem('theme');
+            } else if (theme === 'dark') {
+                html.classList.add('dark');
+                localStorage.theme = 'dark';
+            } else {
+                html.classList.remove('dark');
+                localStorage.theme = 'light';
+            }
+
+            if (theme === 'dark' || (theme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                icon.setAttribute('icon', 'lucide:moon');
+            } else {
+                icon.setAttribute('icon', 'lucide:sun');
+            }
+            
+            document.getElementById('theme-menu').classList.add('hidden');
+        }
+
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            setTheme('dark');
+        } else {
+            setTheme('light');
+        }
+
+        // === MOBILE MENU LOGIC ===
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        // === AUTH LOGIC ===
+        let authMode = 'login'; 
+        let users = [];
+        try {
+            const storedUsers = localStorage.getItem('stylo_users');
+            if (storedUsers) users = JSON.parse(storedUsers);
+        } catch(e) { users = []; }
+
+        let current = localStorage.getItem('stylo_current_user');
+
+        function updateAuthUI() {
+            const loggedOut = document.getElementById('auth-logged-out');
+            const loggedIn = document.getElementById('auth-logged-in');
+            const displayEmail = document.getElementById('user-display-email');
+            const displayName = document.getElementById('user-display-name');
+
+            if (current) {
+                loggedOut.classList.add('hidden');
+                loggedOut.classList.remove('md:flex');
+                loggedIn.classList.remove('hidden');
+                loggedIn.classList.add('flex');
+                if(displayEmail) displayEmail.textContent = current;
+                const user = users.find(u => u.email === current);
+                if(displayName) displayName.textContent = user ? user.name : "User";
+            } else {
+                loggedOut.classList.remove('hidden');
+                loggedOut.classList.add('md:flex');
+                loggedIn.classList.add('hidden');
+                loggedIn.classList.remove('flex');
+            }
+        }
+        updateAuthUI();
+
+        function showWelcomeToast(name) {
+            const toast = document.getElementById('welcome-toast');
+            const msg = document.getElementById('welcome-msg');
+            msg.textContent = `Welcome back, ${name}`;
+            toast.classList.remove('translate-y-20', 'opacity-0', 'pointer-events-none');
+            toast.classList.add('translate-y-0', 'opacity-100');
+            setTimeout(() => {
+                toast.classList.add('translate-y-20', 'opacity-0', 'pointer-events-none');
+                toast.classList.remove('translate-y-0', 'opacity-100');
+            }, 4000);
+        }
+
+        function openAuthModal(mode) {
+            authMode = mode;
+            const modal = document.getElementById('auth-modal');
+            const title = document.getElementById('auth-title');
+            const btn = document.getElementById('auth-submit-btn');
+            const footerText = document.getElementById('auth-footer-text');
+            const switchBtn = document.getElementById('auth-switch-btn');
+            const nameField = document.getElementById('auth-name-field');
+            const errorEl = document.getElementById('auth-error');
+            const successEl = document.getElementById('auth-success');
+
+            if(modal) modal.classList.remove('hidden');
+            if(errorEl) errorEl.classList.add('hidden');
+            if(successEl) successEl.classList.add('hidden');
+
+            if (mode === 'login') {
+                title.textContent = 'Welcome back';
+                btn.textContent = 'Log In';
+                footerText.textContent = "Don't have an account?";
+                switchBtn.textContent = 'Sign up';
+                nameField.classList.add('hidden');
+            } else {
+                title.textContent = 'Create an account';
+                btn.textContent = 'Sign Up';
+                footerText.textContent = "Have an Account?";
+                switchBtn.textContent = 'Login';
+                nameField.classList.remove('hidden');
+            }
+        }
+
+        function closeAuthModal() { document.getElementById('auth-modal').classList.add('hidden'); }
+        function toggleAuthMode() { openAuthModal(authMode === 'login' ? 'signup' : 'login'); }
+
+        function handleAuth(e) {
+            e.preventDefault();
+            const errorEl = document.getElementById('auth-error');
+            const successEl = document.getElementById('auth-success');
+            errorEl.classList.add('hidden');
+            successEl.classList.add('hidden');
+
+            const email = document.getElementById('auth-email').value;
+            const pass = document.getElementById('auth-pass').value;
+            const name = document.getElementById('auth-name').value;
+
+            // Condition 1: Gmail validation
+            if (!email.toLowerCase().endsWith('@gmail.com')) {
+                errorEl.textContent = "Please use a valid @gmail.com address.";
+                errorEl.classList.remove('hidden');
+                return;
+            }
+
+            // Condition 2: Password validation (Min 8 chars, 1 uppercase)
+            const passValid = pass.length >= 8 && /[A-Z]/.test(pass);
+            if (!passValid) {
+                errorEl.textContent = "Password must be min 8 chars with at least 1 uppercase letter.";
+                errorEl.classList.remove('hidden');
+                return;
+            }
+            
+            if (authMode === 'signup') {
+                if (!name) {
+                    errorEl.textContent = "Please enter your full name.";
+                    errorEl.classList.remove('hidden');
+                    return;
+                }
+                const exists = users.find(u => u.email === email);
+                if (exists) {
+                    errorEl.textContent = "Email already registered.";
+                    errorEl.classList.remove('hidden');
+                    return;
+                }
+                users.push({ email, pass, name });
+                localStorage.setItem('stylo_users', JSON.stringify(users));
+                successEl.textContent = "Account created! Now please log in.";
+                successEl.classList.remove('hidden');
+                setTimeout(() => openAuthModal('login'), 1500);
+            } else {
+                // Condition 3: Sign-up check
+                const user = users.find(u => u.email === email && u.pass === pass);
+                if (user) {
+                    current = email;
+                    localStorage.setItem('stylo_current_user', email);
+                    updateAuthUI();
+                    closeAuthModal();
+                    showWelcomeToast(user.name);
+                } else {
+                    const emailExists = users.find(u => u.email === email);
+                    if (!emailExists) {
+                        errorEl.textContent = "No account found. Please sign up first.";
+                    } else {
+                        errorEl.textContent = "Invalid password.";
+                    }
+                    errorEl.classList.remove('hidden');
+                }
+            }
+        }
+
+        function logout() {
+            current = null;
+            localStorage.removeItem('stylo_current_user');
+            updateAuthUI();
+            window.location.href = 'index.html';
+        }
+
+        window.onload = function() {
+            updateAuthUI();
+            setTheme(localStorage.theme || 'dark');
+        };
+    </script>
+</body>
+</html>
