@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stylo AI</title>
+    <title>Stylo AI - AI Fashion & Virtual Try-On</title>
     
     <!-- Tailwind Configuration -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -71,9 +71,6 @@
         #hero-canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
         #trail-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 9999; pointer-events: none; }
 
-        .page-section { display: none; }
-        .page-section.active { display: block; }
-
         /* Text Switcher Animation Classes */
         .title-container {
             display: inline-flex;
@@ -140,19 +137,20 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
                 <!-- Logo -->
-                <div onclick="navigateTo('home')" class="flex items-center gap-2 cursor-pointer group">
+                <a href="index.html" class="flex items-center gap-2 cursor-pointer group">
                     <div class="w-8 h-8 bg-black dark:bg-white rounded-lg flex items-center justify-center transition-transform group-hover:scale-95">
                         <iconify-icon icon="lucide:sparkles" class="text-white dark:text-black text-lg" stroke-width="1.5"></iconify-icon>
                     </div>
                     <span class="text-black dark:text-white font-semibold tracking-tight text-lg">Stylo.ai</span>
-                </div>
+                </a>
 
                 <!-- Desktop Menu -->
                 <div class="hidden md:flex items-center gap-8 text-sm font-medium">
-                    <button onclick="navigateTo('home')" class="text-zinc-600 dark:text-zinc-400 hover:text-black dark:hover:text-white transition-colors font-medium">Home</button>
-                    <button onclick="navigateTo('how-it-works')" class="text-zinc-600 dark:text-zinc-400 hover:text-black dark:hover:text-white transition-colors font-medium">How it works</button>
-                    <button onclick="navigateTo('pricing')" class="text-zinc-600 dark:text-zinc-400 hover:text-black dark:hover:text-white transition-colors font-medium">Pricing</button>
-                    <button onclick="navigateTo('contact')" class="text-zinc-600 dark:text-zinc-400 hover:text-black dark:hover:text-white transition-colors font-medium">Contact</button>
+                    <a href="index.html" class="text-zinc-600 dark:text-zinc-400 hover:text-black dark:hover:text-white transition-colors font-medium">Home</a>
+                    <a href="how-it-works.html" class="text-zinc-600 dark:text-zinc-400 hover:text-black dark:hover:text-white transition-colors font-medium">How it works</a>
+                    <a href="pricing.html" class="text-zinc-600 dark:text-zinc-400 hover:text-black dark:hover:text-white transition-colors font-medium">Pricing</a>
+                    <a href="gallery.html" class="text-zinc-600 dark:text-zinc-400 hover:text-black dark:hover:text-white transition-colors font-medium">Gallery</a>
+                    <a href="contact.html" class="text-zinc-600 dark:text-zinc-400 hover:text-black dark:hover:text-white transition-colors font-medium">Contact</a>
                 </div>
 
                 <!-- Right Side Actions -->
@@ -191,10 +189,11 @@
             </div>
         </div>
         <div id="mobile-menu" class="hidden md:hidden border-t border-black/5 dark:border-white/5 bg-white/95 dark:bg-[#050505]/95 backdrop-blur-xl px-4 pt-2 pb-6 space-y-1">
-            <button onclick="navigateTo('home'); toggleMobileMenu()" class="block w-full text-left px-3 py-3 text-base font-medium">Home</button>
-            <button onclick="navigateTo('how-it-works'); toggleMobileMenu()" class="block w-full text-left px-3 py-3 text-base font-medium">How it works</button>
-            <button onclick="navigateTo('pricing'); toggleMobileMenu()" class="block w-full text-left px-3 py-3 text-base font-medium">Pricing</button>
-            <button onclick="navigateTo('contact'); toggleMobileMenu()" class="block w-full text-left px-3 py-3 text-base font-medium">Contact</button>
+            <a href="index.html" class="block w-full text-left px-3 py-3 text-base font-medium">Home</a>
+            <a href="how-it-works.html" class="block w-full text-left px-3 py-3 text-base font-medium">How it works</a>
+            <a href="pricing.html" class="block w-full text-left px-3 py-3 text-base font-medium">Pricing</a>
+            <a href="gallery.html" class="block w-full text-left px-3 py-3 text-base font-medium">Gallery</a>
+            <a href="contact.html" class="block w-full text-left px-3 py-3 text-base font-medium">Contact</a>
         </div>
     </nav>
 
@@ -202,7 +201,7 @@
     <main id="app-content" class="pt-16 flex-grow w-full relative">
         
         <!-- === HOME PAGE === -->
-        <div id="page-home" class="page-section active animate-fade-in">
+        <section class="relative">
             <!-- Hero Section -->
             <section class="relative min-h-[90vh] flex flex-col items-center justify-center px-4 overflow-hidden">
                 <canvas id="hero-canvas"></canvas>
@@ -236,7 +235,7 @@
                                 <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-500 opacity-75"></span>
                                 <span class="relative inline-flex h-2 w-2 rounded-full bg-green-500"></span>
                             </span>
-                            <p class="text-xs text-green-500 font-bold  tracking-tight">Stylo 2.0 is Active</p>
+                            <p class="text-xs text-green-500 font-bold tracking-tight">Stylo 2.0 is Active</p>
                         </div>
                         <button onclick="document.getElementById('scroll-animation-section').scrollIntoView({ behavior: 'smooth' })" class="relative group h-14 px-12 text-black dark:text-white rounded-full flex items-center justify-center transition-all hover:scale-105 active:scale-95 outline-none font-bold">
                             <div class="absolute inset-0 z-0 h-full w-full rounded-full liquid-button-shadow bg-transparent transition-all"></div>
@@ -271,9 +270,8 @@
                         </div>
 
                         <div class="flex flex-col lg:flex-row lg:items-end gap-10 justify-between pt-10">
-                            <h1 class="underline font-extrabold text-3xl md:text-5xl lg:text-6xl text-center tracking-tighter decoration-emerald-500">Wear It Digitally
-</h1>
-                            <button onclick="navigateTo('pricing')" class="bg-black dark:bg-white text-white dark:text-black px-12 py-6 rounded-full font-bold shadow-2xl hover:scale-105 active:scale-95 transition-all text-lg">Explore Plans</button>
+                            <h1 class="underline font-extrabold text-3xl md:text-5xl lg:text-6xl text-center tracking-tighter decoration-emerald-500">Wear It Digitally</h1>
+                            <a href="pricing.html" class="bg-black dark:bg-white text-white dark:text-black px-12 py-6 rounded-full font-bold shadow-2xl hover:scale-105 active:scale-95 transition-all text-lg text-center">Explore Plans</a>
                         </div>
                     </div>
                 </div>
@@ -323,7 +321,7 @@
                 </div>
             </section>
 
-            <!-- Original Tool Interface (Restored from index.html) -->
+            <!-- Original Tool Interface -->
             <div id="tool-interface" class="max-w-7xl mx-auto px-4 py-32 grid grid-cols-1 lg:grid-cols-12 gap-6 animate-slide-up relative z-10" style="animation-delay: 300ms;">
                 
                 <!-- Sidebar / Controls (Left) -->
@@ -334,10 +332,10 @@
                             <div>
                                 <label class="block text-xs font-semibold text-zinc-500 dark:text-zinc-400 mb-2 uppercase tracking-wide">1. Select Gender</label>
                                 <div class="grid grid-cols-2 gap-2 p-1 bg-zinc-100 dark:bg-zinc-900/50 rounded-lg border border-black/5 dark:border-white/5">
-                                    <button onclick="selectGender('male')" id="btn-male" class="flex items-center justify-center gap-2 py-2.5 rounded-md text-sm font-medium transition-all bg-black dark:bg-zinc-800 text-white shadow-sm ring-1 ring-black/5 dark:ring-white/10">
+                                    <button onclick="selectGender('male')" id="btn-male" class="flex items-center justify-center gap-2 py-2.5 rounded-md text-sm font-bold transition-all bg-black dark:bg-zinc-800 text-white shadow-sm ring-1 ring-black/5 dark:ring-white/10">
                                         <iconify-icon icon="lucide:user" stroke-width="1.5"></iconify-icon> Male
                                     </button>
-                                    <button onclick="selectGender('female')" id="btn-female" class="flex items-center justify-center gap-2 py-2.5 rounded-md text-sm font-medium transition-all text-zinc-500 hover:text-zinc-800 dark:hover:text-zinc-300">
+                                    <button onclick="selectGender('female')" id="btn-female" class="flex items-center justify-center gap-2 py-2.5 rounded-md text-sm font-bold transition-all text-zinc-500 hover:text-zinc-800 dark:hover:text-zinc-300">
                                         <iconify-icon icon="lucide:user-circle" stroke-width="1.5"></iconify-icon> Female
                                     </button>
                                 </div>
@@ -431,13 +429,13 @@
             <div class="mb-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
                 <div class="flex flex-col sm:flex-row items-center justify-between gap-4 mb-8">
                     <h2 class="text-2xl font-semibold text-black dark:text-white tracking-tight text-center sm:text-left">Community Showcase</h2>
-                    <button onclick="navigateTo('gallery')" class="text-emerald-500 hover:text-emerald-600 text-sm font-medium flex items-center gap-1 transition-colors group">
+                    <a href="gallery.html" class="text-emerald-500 hover:text-emerald-600 text-sm font-medium flex items-center gap-1 transition-colors group">
                         View Gallery <iconify-icon icon="lucide:arrow-right" stroke-width="2" class="group-hover:translate-x-1 transition-transform"></iconify-icon>
-                    </button>
+                    </a>
                 </div>
                 <div class="grid grid-cols-2 md:grid-cols-4 grid-rows-2 gap-4 h-[600px] md:h-[500px] w-full lg:w-[85%] mx-auto">
                     <div class="col-start-1 row-start-1 row-span-2 relative group overflow-hidden rounded-2xl">
-                        <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/917d6f93-fb36-439a-884b67b35381_1600w.jpg" alt="Fashion 1" class="object-cover w-full h-full transition-transform duration-700 group-hover:scale-105">
+                        <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=2070&auto=format&fit=crop" alt="Fashion 1" class="object-cover w-full h-full transition-transform duration-700 group-hover:scale-105">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     </div>
                     <div class="col-start-2 row-start-1 relative group overflow-hidden rounded-2xl hidden md:block">
@@ -457,7 +455,7 @@
                 </div>
             </div>
 
-            <!-- Home Pricing (Restored Original) -->
+            <!-- Home Pricing -->
             <div class="max-w-6xl mx-auto pb-12 px-4">
                 <div class="text-center mb-12">
                     <h2 class="text-3xl font-semibold text-black dark:text-white tracking-tight mb-4">Simple, transparent pricing</h2>
@@ -518,255 +516,7 @@
                     </div>
                 </div>
             </div>
-        </div>
-
-        <!-- === GALLERY PAGE === -->
-        <div id="page-gallery" class="page-section hidden animate-fade-in pt-8 px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12"><h2 class="text-3xl font-semibold text-black dark:text-white mb-4">Community Gallery</h2><p class="text-zinc-500">Discover looks generated by our community members.</p></div>
-            <div class="columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4">
-                <div class="break-inside-avoid relative group overflow-hidden rounded-xl"><img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=2020&auto=format&fit=crop" class="w-full object-cover transition-transform duration-500 group-hover:scale-110"></div>
-                <div class="break-inside-avoid relative group overflow-hidden rounded-xl"><img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/c543a9e1-f226-4ced-80b0-feb8445a75b9_1600w.jpg" class="w-full object-cover"></div>
-                <div class="break-inside-avoid relative group overflow-hidden rounded-xl"><img src="https://images.unsplash.com/photo-1503342394128-c104d54dba01?q=80&w=1974&auto=format&fit=crop" class="w-full object-cover"></div>
-                <div class="break-inside-avoid relative group overflow-hidden rounded-xl"><img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/4734259a-bad7-422f-981e-ce01e79184f2_1600w.jpg" class="w-full object-cover"></div>
-                <div class="break-inside-avoid relative group overflow-hidden rounded-xl"><img src="https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?q=80&w=1974&auto=format&fit=crop" class="w-full object-cover"></div>
-                <div class="break-inside-avoid relative group overflow-hidden rounded-xl"><img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=2070&auto=format&fit=crop" class="w-full h-48 md:h-auto object-cover"></div>
-                <div class="break-inside-avoid relative group overflow-hidden rounded-xl"><img src="https://images.unsplash.com/photo-1581044777550-4cfa60707c03?q=80&w=1972&auto=format&fit=crop" class="w-full object-cover"></div>
-                <div class="break-inside-avoid relative group overflow-hidden rounded-xl"><img src="https://images.unsplash.com/photo-1496747611176-843222e1e57c?q=80&w=2073&auto=format&fit=crop" class="w-full object-cover"></div>
-                <div class="break-inside-avoid relative group overflow-hidden rounded-xl"><img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/30104e3c-5eea-4b93-93e9-5313698a7156_1600w.webp" class="w-full object-cover"></div>
-                <div class="break-inside-avoid relative group overflow-hidden rounded-xl"><img src="https://images.unsplash.com/photo-1485968579580-b6d095142e6e?q=80&w=1972&auto=format&fit=crop" class="w-full object-cover"></div>
-                <div class="break-inside-avoid relative group overflow-hidden rounded-xl"><img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/917d6f93-fb36-439a-8c48-884b67b35381_1600w.jpg" class="w-full object-cover"></div>
-                <div class="break-inside-avoid relative group overflow-hidden rounded-xl"><img src="https://images.unsplash.com/photo-1500917293891-ef795e70e1f6?q=80&w=2070&auto=format&fit=crop" class="w-full object-cover"></div>
-                <div class="break-inside-avoid relative group overflow-hidden rounded-xl"><img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?q=80&w=2070&auto=format&fit=crop" class="w-full object-cover"></div>
-                <div class="break-inside-avoid relative group overflow-hidden rounded-xl"><img src="https://images.unsplash.com/photo-1487222477894-8943e31ef7b2?q=80&w=1990&auto=format&fit=crop" class="w-full object-cover"></div>
-                <div class="break-inside-avoid relative group overflow-hidden rounded-xl"><img src="https://images.unsplash.com/photo-1589310243389-96a5483213a8?q=80&w=1972&auto=format&fit=crop" class="w-full object-cover"></div>
-                <div class="break-inside-avoid relative group overflow-hidden rounded-xl"><img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/4734259a-bad7-422f-981e-ce01e79184f2_1600w.jpg" class="w-full object-cover"></div>
-                <div class="break-inside-avoid relative group overflow-hidden rounded-xl"><img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=1974&auto=format&fit=crop" class="w-full object-cover"></div>
-                <div class="break-inside-avoid relative group overflow-hidden rounded-xl"><img src="https://images.unsplash.com/photo-1543087903-1ac2ec7aa8c5?q=80&w=2098&auto=format&fit=crop" class="w-full object-cover"></div>
-                <div class="break-inside-avoid relative group overflow-hidden rounded-xl"><img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?q=80&w=2070&auto=format&fit=crop" class="w-full object-cover"></div>
-                <div class="break-inside-avoid relative group overflow-hidden rounded-xl"><img src="https://images.unsplash.com/photo-1520006403909-838d6b92c22e?q=80&w=2070&auto=format&fit=crop" class="w-full object-cover"></div>
-                <div class="break-inside-avoid relative group overflow-hidden rounded-xl"><img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/c543a9e1-f226-4ced-80b0-feb8445a75b9_1600w.jpg" class="w-full object-cover"></div>
-                <div class="break-inside-avoid relative group overflow-hidden rounded-xl"><img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/5bab247f-35d9-400d-a82b-fd87cfe913d2_1600w.webp" class="w-full object-cover"></div>
-                <div class="break-inside-avoid relative group overflow-hidden rounded-xl"><img src="https://images.unsplash.com/photo-1484515991647-c5760fcecfc7?q=80&w=1949&auto=format&fit=crop" class="w-full object-cover"></div>
-                <div class="break-inside-avoid relative group overflow-hidden rounded-xl"><img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/30104e3c-5eea-4b93-93e9-5313698a7156_1600w.webp" class="w-full object-cover"></div>
-                <div class="break-inside-avoid relative group overflow-hidden rounded-xl"><img src="https://images.unsplash.com/photo-1479064555552-3ef4979f8908?q=80&w=2070&auto=format&fit=crop" class="w-full object-cover"></div>
-                <div class="break-inside-avoid relative group overflow-hidden rounded-xl"><img src="https://images.unsplash.com/photo-1502323777036-f29e3972d82f?q=80&w=2070&auto=format&fit=crop" class="w-full object-cover"></div>
-            </div>
-            <div class="mt-12 text-center"><button class="bg-black dark:bg-white text-white dark:text-black font-medium px-8 py-3 rounded-full hover:opacity-90 transition-all">Load More</button></div>
-        </div>
-
-        <!-- === HOW IT WORKS PAGE === -->
-        <div id="page-how-it-works" class="page-section pt-12 px-4 max-w-5xl mx-auto pb-32 text-center">
-            <h2 class="text-5xl font-black mb-20 text-black dark:text-white tracking-tighter">How Stylo Works</h2>
-            <div class="space-y-24 text-left">
-                <div class="flex flex-col md:flex-row gap-16 items-center">
-                    <div class="w-full md:w-1/2 glass-panel p-4 rounded-[2.5rem] border border-black/5 shadow-2xl"><img src="https://images.unsplash.com/photo-1555421689-d68471e189f2?q=80&w=2070&auto=format&fit=crop" class="w-full h-80 object-cover rounded-[1.5rem]" /></div>
-                    <div class="w-full md:w-1/2">
-                        <span class="text-emerald-500 font-black uppercase text-xs tracking-widest block mb-4">Step 01</span>
-                        <h3 class="text-4xl font-black mt-2 mb-6 tracking-tight text-black dark:text-white">Analysis & Extraction</h3>
-                        <p class="text-lg text-zinc-500 leading-relaxed font-medium">Our proprietary computer vision pipeline dissects over 40 distinct body markers to create a precise digital blueprint of your profile.</p>
-                    </div>
-                </div>
-                <div class="flex flex-col md:flex-row-reverse gap-16 items-center">
-                    <div class="w-full md:w-1/2 glass-panel p-4 rounded-[2.5rem] border border-black/5 shadow-2xl"><img src="https://images.unsplash.com/photo-1558769132-cb1aea458c5e?q=80&w=1974&auto=format&fit=crop" class="w-full h-80 object-cover rounded-[1.5rem]" /></div>
-                    <div class="w-full md:w-1/2">
-                        <span class="text-emerald-500 font-black uppercase text-xs tracking-widest block mb-4">Step 02</span>
-                        <h3 class="text-4xl font-black mt-2 mb-6 tracking-tight text-black dark:text-white">Neural Fitting</h3>
-                        <p class="text-lg text-zinc-500 leading-relaxed font-medium">Advanced neural networks simulate how specific fabrics drape and react to your unique posture and body shape in real-time.</p>
-                    </div>
-                </div>
-                <div class="flex flex-col md:flex-row gap-16 items-center">
-                    <div class="w-full md:w-1/2 glass-panel p-4 rounded-[2.5rem] border border-black/5 shadow-2xl"><img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop" class="w-full h-80 object-cover rounded-[1.5rem]" /></div>
-                    <div class="w-full md:w-1/2">
-                        <span class="text-emerald-500 font-black uppercase text-xs tracking-widest block mb-4">Step 03</span>
-                        <h3 class="text-4xl font-black mt-2 mb-6 tracking-tight text-black dark:text-white">Virtual Try-On</h3>
-                        <p class="text-lg text-zinc-500 leading-relaxed font-medium">Instantly overlay thousands of catalog items onto your digital twin to see exactly how you'll look before you buy.</p>
-                    </div>
-                </div>
-                <div class="flex flex-col md:flex-row-reverse gap-16 items-center">
-                    <div class="w-full md:w-1/2 glass-panel p-4 rounded-[2.5rem] border border-black/5 shadow-2xl"><img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop" class="w-full h-80 object-cover rounded-[1.5rem]" /></div>
-                    <div class="w-full md:w-1/2">
-                        <span class="text-emerald-500 font-black uppercase text-xs tracking-widest block mb-4">Step 04</span>
-                        <h3 class="text-4xl font-black mt-2 mb-6 tracking-tight text-black dark:text-white">Fabric Physics</h3>
-                        <p class="text-lg text-zinc-500 leading-relaxed font-medium">Our physics engine calculates weight, stretch, and light reflectivity to provide a photorealistic representation of high-end materials.</p>
-                    </div>
-                </div>
-                <div class="flex flex-col md:flex-row gap-16 items-center">
-                    <div class="w-full md:w-1/2 glass-panel p-4 rounded-[2.5rem] border border-black/5 shadow-2xl"><img src="https://images.unsplash.com/photo-1512446816042-444d641267d4?q=80&w=2070&auto=format&fit=crop" class="w-full h-80 object-cover rounded-[1.5rem]" /></div>
-                    <div class="w-full md:w-1/2">
-                        <span class="text-emerald-500 font-black uppercase text-xs tracking-widest block mb-4">Step 05</span>
-                        <h3 class="text-4xl font-black mt-2 mb-6 tracking-tight text-black dark:text-white">AI Learning</h3>
-                        <p class="text-lg text-zinc-500 leading-relaxed font-medium">The more you interact, the better our AI understands your aesthetic, tailoring future recommendations to your evolving style DNA.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- === PRICING PAGE === -->
-        <div id="page-pricing" class="page-section hidden animate-fade-in pt-8 px-4">
-            <div class="text-center mb-12"><h2 class="text-3xl font-semibold text-black dark:text-white mb-4">Pricing Plans</h2><p class="text-zinc-500">Flexible options for everyone.</p></div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
-                 <div class="glass-panel p-8 rounded-2xl flex flex-col">
-                    <div class="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-emerald-400 to-teal-500"></div>
-                    <div class="mb-4"><span class="text-zinc-500 font-medium">Starter</span><div class="flex items-baseline gap-1 mt-2"><span class="text-4xl font-semibold text-black dark:text-white">$0</span><span class="text-zinc-500">/mo</span></div></div>
-                    <ul class="space-y-3 mb-8 flex-1">
-                        <li class="flex items-center gap-2 text-sm text-zinc-600 dark:text-zinc-300"><iconify-icon icon="lucide:check" class="text-emerald-500"></iconify-icon> 5 Generations per day</li>
-                        <li class="flex items-center gap-2 text-sm text-zinc-600 dark:text-zinc-300"><iconify-icon icon="lucide:check" class="text-emerald-500"></iconify-icon> Standard SD Quality</li>
-                        <li class="flex items-center gap-2 text-sm text-zinc-600 dark:text-zinc-300"><iconify-icon icon="lucide:check" class="text-emerald-500"></iconify-icon> Ad-supported</li>
-                        <li class="flex items-center gap-2 text-sm text-zinc-600 dark:text-zinc-300"><iconify-icon icon="lucide:check" class="text-emerald-500"></iconify-icon> Basic styling tools</li>
-                        <li class="flex items-center gap-2 text-sm text-zinc-600 dark:text-zinc-300"><iconify-icon icon="lucide:check" class="text-emerald-500"></iconify-icon>Community support</li>
-                        <li class="flex items-center gap-2 text-sm text-zinc-600 dark:text-zinc-300"><iconify-icon icon="lucide:check" class="text-emerald-500"></iconify-icon> Ad-supported</li>
-                        <li class="flex items-center gap-2 text-sm text-zinc-600 dark:text-zinc-300"><iconify-icon icon="lucide:check" class="text-emerald-500"></iconify-icon>Ideal for students & first-time users</li>
-                        <li class="flex items-center gap-2 text-sm text-zinc-600 dark:text-zinc-300"><iconify-icon icon="lucide:check" class="text-emerald-500"></iconify-icon>Basic virtual try-on experience</li>
-                    </ul>
-                    <button class="w-full py-2 rounded-lg border border-black/10 dark:border-white/10 text-black dark:text-white text-sm font-medium hover:bg-black/5 dark:hover:bg-white/5 transition-colors">Get Started</button>
-                </div>
-                <div class="glass-panel p-8 rounded-2xl flex flex-col relative overflow-hidden">
-                    <div class="absolute top-0 right-0 bg-black dark:bg-white text-white dark:text-black text-[10px] font-bold px-3 py-1 rounded-bl-lg uppercase tracking-wider">Best Value</div>
-                    <div class="absolute top-0 inset-x-0 h-1 bg-gradient-to-r"></div>
-                    <div class="mb-4"><span class="text-emerald-600 dark:text-emerald-400 font-medium">Enthusiast</span><div class="flex items-baseline gap-1 mt-2"><span class="text-4xl font-semibold text-black dark:text-white">$2.99</span><span class="text-zinc-500">/mo</span></div></div>
-                    <ul class="space-y-3 mb-8 flex-1">
-                            <li class="flex items-center gap-2 text-sm text-zinc-600 dark:text-zinc-300"><iconify-icon icon="lucide:check" class="text-emerald-500"></iconify-icon> 15 Generations per day</li>
-                            <li class="flex items-center gap-2 text-sm text-zinc-600 dark:text-zinc-300"><iconify-icon icon="lucide:check" class="text-emerald-500"></iconify-icon> 1080p HD Quality</li>
-                            <li class="flex items-center gap-2 text-sm text-zinc-600 dark:text-zinc-300"><iconify-icon icon="lucide:check" class="text-emerald-500"></iconify-icon> No Watermarks</li>
-                            <li class="flex items-center gap-2 text-sm text-zinc-600 dark:text-zinc-300"><iconify-icon icon="lucide:check" class="text-emerald-500"></iconify-icon>premium experience</li>
-                            <li class="flex items-center gap-2 text-sm text-zinc-600 dark:text-zinc-300"><iconify-icon icon="lucide:check" class="text-emerald-500"></iconify-icon>Priority support over Starter</li>
-                            <li class="flex items-center gap-2 text-sm text-zinc-600 dark:text-zinc-300"><iconify-icon icon="lucide:check" class="text-emerald-500"></iconify-icon>Fastest processing speed</li>
-                            <li class="flex items-center gap-2 text-sm text-zinc-600 dark:text-zinc-300"><iconify-icon icon="lucide:check" class="text-emerald-500"></iconify-icon>Unlimited projects</li>
-                            <li class="flex items-center gap-2 text-sm text-zinc-600 dark:text-zinc-300"><iconify-icon icon="lucide:check" class="text-emerald-500"></iconify-icon>Advanced analytics</li>
-                            <li class="flex items-center gap-2 text-sm text-zinc-600 dark:text-zinc-300"><iconify-icon icon="lucide:check" class="text-emerald-500"></iconify-icon>24-hour support</li>
-                    </ul>
-                    <button class="w-full py-2 rounded-lg bg-emerald-600 text-white text-sm font-medium hover:bg-emerald-700 transition-colors">Upgrade</button>
-                </div>
-                <div class="glass-panel p-8 rounded-2xl flex flex-col relative overflow-hidden">
-                    <div class="mb-4"><span class="text-zinc-500 font-medium">Pro Stylist</span><div class="flex items-baseline gap-1 mt-2"><span class="text-4xl font-semibold text-black dark:text-white">$9.99</span><span class="text-zinc-500">/mo</span></div></div>
-                    <ul class="space-y-3 mb-8 flex-1">
-                            <li class="flex items-center gap-2 text-sm text-zinc-600 dark:text-zinc-300"><iconify-icon icon="lucide:check" class="text-emerald-500"></iconify-icon> Unlimited Generations</li>
-                            <li class="flex items-center gap-2 text-sm text-zinc-600 dark:text-zinc-300"><iconify-icon icon="lucide:check" class="text-emerald-500"></iconify-icon> 4K Ultra HD Rendering</li>
-                            <li class="flex items-center gap-2 text-sm text-zinc-600 dark:text-zinc-300"><iconify-icon icon="lucide:check" class="text-emerald-500"></iconify-icon> Virtual Closet Access</li>
-                            <li class="flex items-center gap-2 text-sm text-zinc-600 dark:text-zinc-300"><iconify-icon icon="lucide:check" class="text-emerald-500"></iconify-icon>Perfect for Content</li>
-                            <li class="flex items-center gap-2 text-sm text-zinc-600 dark:text-zinc-300"><iconify-icon icon="lucide:check" class="text-emerald-500"></iconify-icon>24-hour support</li>
-                            <li class="flex items-center gap-2 text-sm text-zinc-600 dark:text-zinc-300"><iconify-icon icon="lucide:check" class="text-emerald-500"></iconify-icon>No Watermarks</li>
-                            <li class="flex items-center gap-2 text-sm text-zinc-600 dark:text-zinc-300"><iconify-icon icon="lucide:check" class="text-emerald-500"></iconify-icon>Early access to new features</li>
-                            <li class="flex items-center gap-2 text-sm text-zinc-600 dark:text-zinc-300"><iconify-icon icon="lucide:check" class="text-emerald-500"></iconify-icon>Multiple models, poses & styles</li>
-                            <li class="flex items-center gap-2 text-sm text-zinc-600 dark:text-zinc-300"><iconify-icon icon="lucide:check" class="text-emerald-500"></iconify-icon>Everything in Stylo+</li>
-                            <li class="flex items-center gap-2 text-sm text-zinc-600 dark:text-zinc-300"><iconify-icon icon="lucide:check" class="text-emerald-500"></iconify-icon>Dedicated account manager</li>
-                            <li class="flex items-center gap-2 text-sm text-zinc-600 dark:text-zinc-300"><iconify-icon icon="lucide:check" class="text-emerald-500"></iconify-icon>SLA agreement</li>
-                    </ul>
-                    <button class="w-full py-2 rounded-lg bg-black dark:bg-white text-white dark:text-black text-sm font-medium hover:opacity-90 transition-colors">Go Pro</button>
-                </div>
-             </div>
-        </div>
-        <!-- === CONTACT PAGE === -->
-        <div id="page-contact" class="page-section hidden animate-fade-in max-w-xl mx-auto pt-8 px-4">
-            <div class="text-center mb-8"><h2 class="text-3xl font-semibold text-black dark:text-white mb-2">Get in touch</h2><p class="text-zinc-500">We'd love to hear from you. Send us a message.</p></div>
-            <div class="glass-panel rounded-2xl p-8"><form onsubmit="event.preventDefault(); alert('Message sent!');" class="space-y-4"><div class="grid grid-cols-2 gap-4"><div class="space-y-1"><label class="text-xs font-medium text-zinc-500">First Name</label><input type="text" class="w-full bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-white/10 rounded-lg px-3 py-2 text-sm focus:ring-1 focus:ring-emerald-500 outline-none transition-colors text-black dark:text-white" placeholder="Jane"></div><div class="space-y-1"><label class="text-xs font-medium text-zinc-500">Last Name</label><input type="text" class="w-full bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-white/10 rounded-lg px-3 py-2 text-sm focus:ring-1 focus:ring-emerald-500 outline-none transition-colors text-black dark:text-white" placeholder="Doe"></div></div><div class="space-y-1"><label class="text-xs font-medium text-zinc-500">Email</label><input type="email" class="w-full bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-white/10 rounded-lg px-3 py-2.5 text-sm focus:ring-1 focus:ring-emerald-500 outline-none transition-colors text-black dark:text-white" placeholder="jane@example.com"></div><div class="space-y-1"><label class="text-xs font-medium text-zinc-500">Message</label><textarea rows="4" class="w-full bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-white/10 rounded-lg px-3 py-2 text-sm focus:ring-1 focus:ring-emerald-500 outline-none transition-colors text-black dark:text-white" placeholder="How can we help?"></textarea></div><button class="w-full bg-black dark:bg-white text-white dark:text-black font-medium py-2.5 rounded-lg hover:opacity-90 transition-opacity">Send Message</button></form></div>
-        </div>
-
-        <!-- === ABOUT PAGE === -->
-        <div id="page-about" class="page-section hidden animate-fade-in max-w-4xl mx-auto pt-8 px-4">
-            <div class="text-center mb-16"><h2 class="text-3xl font-semibold text-black dark:text-white mb-4">Reimagining Fashion with AI</h2><p class="text-zinc-500 dark:text-zinc-400 max-w-2xl mx-auto">We are a diverse team of researchers, designers, and engineers obsessed with the intersection of style and technology.</p></div>
-            <div class="glass-panel p-8 rounded-2xl mb-12"><h3 class="text-xl font-medium text-black dark:text-white mb-4">Our Mission</h3><p class="text-zinc-600 dark:text-zinc-400 leading-relaxed mb-4">At Stylo.ai, we believe fashion should be personal, accessible, and sustainable. By leveraging state-of-the-art Generative Adversarial Networks (GANs), we allow users to visualize outfits on their own digital twin before making a purchase. This not only enhances confidence but significantly reduces the carbon footprint associated with returns.</p><p class="text-zinc-600 dark:text-zinc-400 leading-relaxed">Founded in 2023, we have processed over 1 million generations and partnered with 500+ global brands.</p></div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center"><div class="glass-panel p-6 rounded-2xl"><h4 class="text-3xl font-bold">1M+</h4><p class="text-xs text-zinc-500 uppercase tracking-widest">Outfits Generated</p></div><div class="glass-panel p-6 rounded-2xl"><h4 class="text-3xl font-bold">500+</h4><p class="text-xs text-zinc-500 uppercase tracking-widest">Brand Partners</p></div><div class="glass-panel p-6 rounded-2xl"><h4 class="text-3xl font-bold">0.2s</h4><p class="text-xs text-zinc-500 uppercase tracking-widest">Inference Time</p></div></div>
-        </div>
-
-        <!-- === BLOG PAGE === -->
-        <div id="page-blog" class="page-section hidden animate-fade-in pt-8 px-4">
-            <div class="text-center mb-16"><h2 class="text-3xl font-semibold text-black dark:text-white mb-4">Latest Insights</h2><p class="text-zinc-500">Thoughts on AI, sustainability, and digital fashion.</p></div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="group cursor-pointer"><div class="overflow-hidden rounded-2xl mb-4"><img src="https://images.unsplash.com/photo-1532453288672-3a27e9be9efd?q=80&w=1964&auto=format&fit=crop" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500"></div><span class="text-emerald-500 text-xs font-semibold tracking-wider uppercase">Technology</span><h3 class="text-lg font-medium text-black dark:text-white mt-2 group-hover:underline">The Future of Virtual Fitting Rooms</h3><p class="text-sm text-zinc-500 mt-2 line-clamp-2">How computer vision is solving the sizing problem in e-commerce once and for all.</p></div>
-                <div class="group cursor-pointer"><div class="overflow-hidden rounded-2xl mb-4"><img src="https://images.unsplash.com/photo-1445205170230-053b83016050?q=80&w=2071&auto=format&fit=crop" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500"></div><span class="text-emerald-500 text-xs font-semibold tracking-wider uppercase">Style</span><h3 class="text-lg font-medium text-black dark:text-white mt-2 group-hover:underline">Color Theory in the Age of AI</h3><p class="text-sm text-zinc-500 mt-2 line-clamp-2">Why algorithms might be better at matching colors than the human eye.</p></div>
-                <div class="group cursor-pointer"><div class="overflow-hidden rounded-2xl mb-4"><img src="https://images.unsplash.com/photo-1473187983305-f615310e7daa?q=80&w=2070&auto=format&fit=crop" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500"></div><span class="text-emerald-500 text-xs font-semibold tracking-wider uppercase">Company</span><h3 class="text-lg font-medium text-black dark:text-white mt-2 group-hover:underline">Introducing Stylo API v2</h3><p class="text-sm text-zinc-500 mt-2 line-clamp-2">Faster generation times, higher resolution, and new fabric physics engine.</p></div>
-            </div>
-        </div>
-
-        <!-- === CAREERS PAGE === -->
-        <div id="page-careers" class="page-section hidden animate-fade-in max-w-4xl mx-auto pt-8 px-4">
-            <div class="text-center py-20">
-                <h2 class="text-4xl font-extrabold text-black dark:text-white mb-4 tracking-tighter">Careers</h2>
-                <p class="text-7xl sm:text-9xl text-zinc-500 mt-10 font-medium">Coming Soon</p>
-                <p class="text-sm text-zinc-400 mt-10 max-w-md mx-auto">We're building the future of AI fashion. Stay tuned for opportunities to join our team.</p>
-            </div>
-        </div>
-
-        <!-- === PRIVACY PAGE === -->
-        <div id="page-privacy" class="page-section hidden animate-fade-in max-w-2xl mx-auto pt-8 px-4">
-            <h2 class="text-3xl font-semibold text-black dark:text-white mb-8">Privacy Policy</h2>
-            <div class="prose prose-sm dark:prose-invert text-zinc-600 dark:text-zinc-400 space-y-6">
-                <p>Last updated: October 2023</p>
-                <p>At Stylo.ai, we take your privacy seriously. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website.</p>
-
-                <h3 class="text-lg font-medium text-black dark:text-white mt-6 mb-2">1. Collection of your information</h3>
-                <p>We may collect information about you in a variety of ways. The information we may collect on the Site includes Personal Data and Biometric Data extracted from uploaded photos.</p>
-
-<h3 class="text-lg font-medium text-black dark:text-white mt-6 mb-2">2. User Images & Uploads</h3>
-                <p>Stylopro collects images uploaded by users solely to provide virtual try-on and cloth replacement services.</p>
-
-<h3 class="text-lg font-medium text-black dark:text-white mt-6 mb-2">3. Temporary Processing</h3>
-                <p>Uploaded images are processed temporarily and are automatically deleted within a reasonable time after processing unless required for service improvement with consent.</p>
-
-<h3 class="text-lg font-medium text-black dark:text-white mt-6 mb-2">4. No Biometric Identification</h3>
-                <p>Stylopro does not perform facial recognition, biometric identification, or identity verification on user images.</p>
-
-<h3 class="text-lg font-medium text-black dark:text-white mt-6 mb-2">5. Purpose Limitation</h3>
-                <p>User images are used only to generate virtual try-on results and are not used for marketing or advertising without explicit permission.</p>
-
-<h3 class="text-lg font-medium text-black dark:text-white mt-6 mb-2">6. Data Security</h3>
-                <p>We use industry-standard security practices to protect user data from unauthorized access, misuse, or disclosure.</p>
-
-<h3 class="text-lg font-medium text-black dark:text-white mt-6 mb-2">7. No Sale of Personal Data</h3>
-                <p>Stylopro does not sell, rent, or trade user images or personal information to third parties.</p>
-
-<h3 class="text-lg font-medium text-black dark:text-white mt-6 mb-2">8. Third-Party Services</h3>
-                <p>We may use trusted third-party AI or cloud services strictly for processing images, under confidentiality and data protection agreements.</p>
-
-<h3 class="text-lg font-medium text-black dark:text-white mt-6 mb-2">9. User Control</h3>
-                <p>Users may request deletion of their uploaded images and associated data by contacting our support team.</p>
-
-<h3 class="text-lg font-medium text-black dark:text-white mt-6 mb-2">10. Policy Updates</h3>
-                <p>Stylopro may update this Privacy Policy periodically. Continued use of the platform indicates acceptance of the updated policy.</p>
-
-            </div>
-        </div>
-
-        <!-- === TERMS PAGE === -->
-        <div id="page-terms" class="page-section hidden animate-fade-in max-w-2xl mx-auto pt-8 px-4">
-            <h2 class="text-3xl font-semibold text-black dark:text-white mb-8">Terms of Service</h2>
-            <div class="prose prose-sm dark:prose-invert text-zinc-600 dark:text-zinc-400 space-y-6">
-                <p>Last updated: October 2023</p>
-                <p>Please read these Terms of Service carefully before using the Stylo.ai website operated by Stylo AI Inc.</p>
-<h3 class="text-lg font-medium text-black dark:text-white mt-6 mb-2">1. Service Overview</h3>
-<p>Stylopro.online provides AI-based virtual try-on and clothing visualization services for demonstration and informational purposes only.</p>
-
-<h3 class="text-lg font-medium text-black dark:text-white mt-6 mb-2">2. Conditions of Use</h3>
-<p>By accessing and using this website, you agree to comply with these Terms and all applicable laws and regulations.</p>
-
-<h3 class="text-lg font-medium text-black dark:text-white mt-6 mb-2">3. User Responsibilities</h3>
-<p>You are responsible for all images and content you upload and confirm that you have the legal rights to use them.</p>
-
-<h3 class="text-lg font-medium text-black dark:text-white mt-6 mb-2">4. Acceptable Use</h3>
-<p>You agree not to upload any unlawful, offensive, explicit, misleading, or copyrighted material without proper authorization.</p>
-
-<h3 class="text-lg font-medium text-black dark:text-white mt-6 mb-2">5. Accuracy Disclaimer</h3>
-<p>Virtual try-on results are AI-generated simulations and may not accurately represent real-world clothing fit, fabric, or appearance.</p>
-
-<h3 class="text-lg font-medium text-black dark:text-white mt-6 mb-2">6. Intellectual Property</h3>
-<p>All website content, design, branding, and AI technology are the property of Stylopro.online and are protected by applicable intellectual property laws.</p>
-
-<h3 class="text-lg font-medium text-black dark:text-white mt-6 mb-2">7. User Content Ownership</h3>
-<p>You retain ownership of your uploaded images. Stylopro.online does not claim ownership over user-uploaded content.</p>
-
-<h3 class="text-lg font-medium text-black dark:text-white mt-6 mb-2">8. Service Availability</h3>
-<p>Stylopro.online reserves the right to modify, suspend, or discontinue any part of the service at any time without prior notice.</p>
-
-<h3 class="text-lg font-medium text-black dark:text-white mt-6 mb-2">9. Limitation of Liability</h3>
-<p>Stylopro.online shall not be liable for any damages or losses arising from the use of or reliance on virtual try-on results.</p>
-
-<h3 class="text-lg font-medium text-black dark:text-white mt-6 mb-2">10. Governing Law</h3>
-<p>These Terms shall be governed by and interpreted in accordance with the laws of India, and any disputes shall be subject to Indian jurisdiction.</p>
-
-            </div>
-        </div>
-
+        </section>
     </main>
 
     <!-- Footer -->
@@ -787,23 +537,23 @@
             <div>
                 <h4 class="text-black dark:text-white text-sm font-medium mb-4">Product</h4>
                 <ul class="space-y-2 text-xs text-zinc-500">
-                    <li><button onclick="navigateTo('how-it-works')" class="hover:text-zinc-800 dark:hover:text-zinc-300">Features</button></li>
-                    <li><button onclick="navigateTo('pricing')" class="hover:text-zinc-800 dark:hover:text-zinc-300">Pricing</button></li>
-                    <li><button onclick="navigateTo('gallery')" class="hover:text-zinc-800 dark:hover:text-zinc-300">Gallery</button></li>
+                    <li><a href="how-it-works.html" class="hover:text-zinc-800 dark:hover:text-zinc-300">Features</a></li>
+                    <li><a href="pricing.html" class="hover:text-zinc-800 dark:hover:text-zinc-300">Pricing</a></li>
+                    <li><a href="gallery.html" class="hover:text-zinc-800 dark:hover:text-zinc-300">Gallery</a></li>
                 </ul>
             </div>
             <div>
                 <h4 class="text-black dark:text-white text-sm font-medium mb-4">Company</h4>
                 <ul class="space-y-2 text-xs text-zinc-500">
-                    <li><button onclick="navigateTo('about')" class="hover:text-zinc-800 dark:hover:text-zinc-300">About</button></li>
-                    <li><button onclick="navigateTo('careers')" class="hover:text-zinc-800 dark:hover:text-zinc-300">Careers</button></li>
+                    <li><a href="about.html" class="hover:text-zinc-800 dark:hover:text-zinc-300">About</a></li>
+                    <li><a href="careers.html" class="hover:text-zinc-800 dark:hover:text-zinc-300">Careers</a></li>
                 </ul>
             </div>
             <div>
                 <h4 class="text-black dark:text-white text-sm font-medium mb-4">Legal</h4>
                 <ul class="space-y-2 text-xs text-zinc-500">
-                    <li><button onclick="navigateTo('privacy')" class="hover:text-zinc-800 dark:hover:text-zinc-300">Privacy</button></li>
-                    <li><button onclick="navigateTo('terms')" class="hover:text-zinc-800 dark:hover:text-zinc-300">Terms</button></li>
+                    <li><a href="privacy.html" class="hover:text-zinc-800 dark:hover:text-zinc-300">Privacy</a></li>
+                    <li><a href="terms.html" class="hover:text-zinc-800 dark:hover:text-zinc-300">Terms</a></li>
                 </ul>
             </div>
         </div>
@@ -837,11 +587,11 @@
 
                     <div class="space-y-1">
                         <label class="text-xs font-medium text-zinc-500">Email Address</label>
-                        <input type="email" id="auth-email" required class="w-full bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-white/10 rounded-lg px-3 py-2.5 text-sm focus:ring-1 focus:ring-black dark:focus:ring-white outline-none transition-colors text-black dark:text-white" placeholder="you@example.com">
+                        <input type="email" id="auth-email" required class="w-full bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-white/10 rounded-lg px-3 py-2.5 text-sm focus:ring-1 focus:ring-black dark:focus:ring-white outline-none transition-colors text-black dark:text-white" placeholder="you@gmail.com">
                     </div>
                     <div class="space-y-1">
                         <label class="text-xs font-medium text-zinc-500">Password</label>
-                        <input type="password" id="auth-pass" required minlength="6" class="w-full bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-white/10 rounded-lg px-3 py-2.5 text-sm focus:ring-1 focus:ring-black dark:focus:ring-white outline-none transition-colors text-black dark:text-white" placeholder="Min 6 characters">
+                        <input type="password" id="auth-pass" required class="w-full bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-white/10 rounded-lg px-3 py-2.5 text-sm focus:ring-1 focus:ring-black dark:focus:ring-white outline-none transition-colors text-black dark:text-white" placeholder="Min 8 chars, 1 uppercase">
                     </div>
                     
                     <div id="auth-error" class="text-red-500 text-xs text-center hidden"></div>
@@ -858,6 +608,14 @@
                 </div>
             </div>
         </div>
+    </div>
+
+    <!-- Welcome Toast -->
+    <div id="welcome-toast" class="fixed bottom-10 left-1/2 -translate-x-1/2 z-[200] px-6 py-3 rounded-full glass-panel border border-emerald-500/20 shadow-2xl flex items-center gap-3 transform translate-y-20 opacity-0 transition-all duration-500 pointer-events-none">
+        <div class="w-8 h-8 bg-emerald-500 rounded-full flex items-center justify-center">
+            <iconify-icon icon="lucide:check" class="text-white text-lg"></iconify-icon>
+        </div>
+        <span id="welcome-msg" class="text-sm font-semibold text-black dark:text-white">Welcome back!</span>
     </div>
 
     <!-- Scripts -->
@@ -907,14 +665,6 @@
             menu.classList.toggle('hidden');
         }
 
-        // === ROUTING LOGIC ===
-        function navigateTo(pageId) {
-            document.querySelectorAll('.page-section').forEach(el => el.classList.remove('active'));
-            const target = document.getElementById('page-' + pageId);
-            if(target) target.classList.add('active');
-            window.scrollTo(0,0);
-        }
-
         // === AUTH LOGIC ===
         let authMode = 'login'; 
         let users = [];
@@ -948,6 +698,18 @@
         }
         updateAuthUI();
 
+        function showWelcomeToast(name) {
+            const toast = document.getElementById('welcome-toast');
+            const msg = document.getElementById('welcome-msg');
+            msg.textContent = `Welcome back, ${name}`;
+            toast.classList.remove('translate-y-20', 'opacity-0', 'pointer-events-none');
+            toast.classList.add('translate-y-0', 'opacity-100');
+            setTimeout(() => {
+                toast.classList.add('translate-y-20', 'opacity-0', 'pointer-events-none');
+                toast.classList.remove('translate-y-0', 'opacity-100');
+            }, 4000);
+        }
+
         function openAuthModal(mode) {
             authMode = mode;
             const modal = document.getElementById('auth-modal');
@@ -956,8 +718,12 @@
             const footerText = document.getElementById('auth-footer-text');
             const switchBtn = document.getElementById('auth-switch-btn');
             const nameField = document.getElementById('auth-name-field');
+            const errorEl = document.getElementById('auth-error');
+            const successEl = document.getElementById('auth-success');
 
             if(modal) modal.classList.remove('hidden');
+            if(errorEl) errorEl.classList.add('hidden');
+            if(successEl) successEl.classList.add('hidden');
 
             if (mode === 'login') {
                 title.textContent = 'Welcome back';
@@ -979,23 +745,64 @@
 
         function handleAuth(e) {
             e.preventDefault();
+            const errorEl = document.getElementById('auth-error');
+            const successEl = document.getElementById('auth-success');
+            errorEl.classList.add('hidden');
+            successEl.classList.add('hidden');
+
             const email = document.getElementById('auth-email').value;
             const pass = document.getElementById('auth-pass').value;
             const name = document.getElementById('auth-name').value;
+
+            // Condition 1: Gmail validation
+            if (!email.toLowerCase().endsWith('@gmail.com')) {
+                errorEl.textContent = "Please use a valid @gmail.com address.";
+                errorEl.classList.remove('hidden');
+                return;
+            }
+
+            // Condition 2: Password validation (Min 8 chars, 1 uppercase)
+            const passValid = pass.length >= 8 && /[A-Z]/.test(pass);
+            if (!passValid) {
+                errorEl.textContent = "Password must be min 8 chars with at least 1 uppercase letter.";
+                errorEl.classList.remove('hidden');
+                return;
+            }
             
             if (authMode === 'signup') {
+                if (!name) {
+                    errorEl.textContent = "Please enter your full name.";
+                    errorEl.classList.remove('hidden');
+                    return;
+                }
                 const exists = users.find(u => u.email === email);
-                if (exists) return;
+                if (exists) {
+                    errorEl.textContent = "Email already registered.";
+                    errorEl.classList.remove('hidden');
+                    return;
+                }
                 users.push({ email, pass, name });
                 localStorage.setItem('stylo_users', JSON.stringify(users));
-                setTimeout(() => openAuthModal('login'), 500);
+                successEl.textContent = "Account created! Now please log in.";
+                successEl.classList.remove('hidden');
+                setTimeout(() => openAuthModal('login'), 1500);
             } else {
+                // Condition 3: Sign-up check
                 const user = users.find(u => u.email === email && u.pass === pass);
                 if (user) {
                     current = email;
                     localStorage.setItem('stylo_current_user', email);
-                    closeAuthModal();
                     updateAuthUI();
+                    closeAuthModal();
+                    showWelcomeToast(user.name);
+                } else {
+                    const emailExists = users.find(u => u.email === email);
+                    if (!emailExists) {
+                        errorEl.textContent = "No account found. Please sign up first.";
+                    } else {
+                        errorEl.textContent = "Invalid password.";
+                    }
+                    errorEl.classList.remove('hidden');
                 }
             }
         }
@@ -1004,7 +811,7 @@
             current = null;
             localStorage.removeItem('stylo_current_user');
             updateAuthUI();
-            navigateTo('home');
+            window.location.href = 'index.html';
         }
 
         // === MOUSE TRAIL ANIMATION ===
@@ -1095,7 +902,7 @@
             });
         }
 
-        // === TOOL INTERFACE LOGIC (REINSTATED) ===
+        // === TOOL INTERFACE LOGIC ===
         function selectGender(g) {
             const m = document.getElementById('btn-male'), f = document.getElementById('btn-female');
             if(g==='male') { 
